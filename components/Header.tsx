@@ -165,7 +165,7 @@ export default function Header() {
           </Link>
 
           <Link
-            href="/about"
+            href="#about"
             onClick={() => setMobileMenuOpen(false)}
             className="block border-b border-[#4A3528]/10 py-4 text-base font-medium text-[#29231F]"
           >
@@ -208,7 +208,7 @@ export default function Header() {
           </div>
 
           <Link
-            href="/location"
+            href="#contacts"
             onClick={() => setMobileMenuOpen(false)}
             className="flex items-center gap-2 border-b border-[#4A3528]/10 py-4 text-base font-medium text-[#29231F]"
           >
@@ -217,7 +217,7 @@ export default function Header() {
           </Link>
 
           <Link
-            href="/contacts"
+            href="#contacts"
             onClick={() => setMobileMenuOpen(false)}
             className="block border-b border-[#4A3528]/10 py-4 text-base font-medium text-[#29231F]"
           >
