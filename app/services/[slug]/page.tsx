@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { services } from "@/data/services";
@@ -8,6 +9,50 @@ type ServicePageProps = {
     slug: string;
   }>;
 };
+
+// SEO для кожної сторінки послуги
+export async function generateMetadata({
+  params,
+}: ServicePageProps): Promise<Metadata> {
+  const { slug } = await params;
+
+  const service = services.find((item) => item.slug === slug);
+
+  if (!service) {
+    return {};
+  }
+
+  return {
+    title: service.title,
+    description: service.description,
+
+    alternates: {
+      canonical: `/services/${service.slug}`,
+    },
+
+    openGraph: {
+      type: "website",
+      url: `https://zem.vn.ua/services/${service.slug}`,
+      title: service.title,
+      description: service.description,
+      siteName: "ЗемВін",
+      locale: "uk_UA",
+      images: [
+        {
+          url: service.image,
+          width: 1200,
+          height: 630,
+          alt: service.title,
+        },
+      ],
+    },
+
+    robots: {
+      index: true,
+      follow: true,
+    },
+  };
+}
 
 export default async function ServicePage({ params }: ServicePageProps) {
   const { slug } = await params;
@@ -35,19 +80,20 @@ export default async function ServicePage({ params }: ServicePageProps) {
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-[#6B625B]">
               {service.description}
             </p>
+
             <ServiceRequestButton
               className="
-    mt-8
-    inline-flex
-    rounded-lg
-    bg-[#C0A264]
-    px-7
-    py-4
-    font-medium
-    text-white
-    transition
-    hover:bg-[#A98B4F]
-  "
+                mt-8
+                inline-flex
+                rounded-lg
+                bg-[#C0A264]
+                px-7
+                py-4
+                font-medium
+                text-white
+                transition
+                hover:bg-[#A98B4F]
+              "
             >
               Замовити послугу
             </ServiceRequestButton>
@@ -58,6 +104,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
               src={service.image}
               alt={service.title}
               fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
             />
           </div>
@@ -177,19 +224,20 @@ export default async function ServicePage({ params }: ServicePageProps) {
           <p className="mx-auto mt-4 max-w-2xl text-lg text-white/80">
             Залиште заявку, і ми зв’яжемося з вами для консультації.
           </p>
+
           <ServiceRequestButton
             className="
-    mt-8
-    inline-flex
-    rounded-lg
-    bg-white
-    px-7
-    py-4
-    font-medium
-    text-[#4A3528]
-    transition
-    hover:bg-[#F8F5EF]
-  "
+              mt-8
+              inline-flex
+              rounded-lg
+              bg-white
+              px-7
+              py-4
+              font-medium
+              text-[#4A3528]
+              transition
+              hover:bg-[#F8F5EF]
+            "
           >
             Залишити заявку
           </ServiceRequestButton>

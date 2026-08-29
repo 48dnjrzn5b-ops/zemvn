@@ -105,7 +105,7 @@ export default function Hero() {
             "
           >
             <Link
-              href="/services"
+              href="#services"
               className="
                 group
                 inline-flex
@@ -136,7 +136,7 @@ export default function Hero() {
             </Link>
 
             <Link
-              href="/contacts"
+              href="#contacts"
               className="
                 inline-flex
                 h-12

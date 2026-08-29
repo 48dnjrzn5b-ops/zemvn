@@ -76,7 +76,7 @@ export default function Contact() {
                       sm:text-xl
                     "
                   >
-                    Київська, 4
+                    вул. Київська, 4
                   </p>
                 </div>
               </div>
@@ -143,7 +143,7 @@ export default function Contact() {
                       sm:text-3xl
                     "
                   >
-                    Ямпіль
+                    м. Ямпіль
                   </h3>
 
                   <p
@@ -168,7 +168,7 @@ export default function Contact() {
                     sm:text-xl
                   "
                 >
-                  Петренко Петро Петрович
+                  Майбородюк Михайло Михайлович
                 </p>
 
                 <a

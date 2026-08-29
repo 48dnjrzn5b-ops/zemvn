@@ -3,7 +3,7 @@ import ServiceCard from "./ServiceCard";
 
 export default function Services() {
   return (
-    <section className="bg-[#F5F1E8]">
+    <section id="services" className="bg-[#F5F1E8]">
       <div
         className="
           mx-auto
