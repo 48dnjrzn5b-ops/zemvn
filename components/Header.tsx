@@ -1,6 +1,7 @@
 "use client";
 import { services } from "@/data/services";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ChevronDown, Menu, X, Mail, MapPin } from "lucide-react";
 import { FaTelegramPlane, FaViber, FaWhatsapp } from "react-icons/fa";
@@ -8,6 +9,18 @@ import { FaTelegramPlane, FaViber, FaWhatsapp } from "react-icons/fa";
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const router = useRouter();
+
+  const scrollToSection = (sectionId: string) => {
+    if (window.location.pathname === "/") {
+      document.getElementById(sectionId)?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    } else {
+      router.push(`/#${sectionId}`);
+    }
+  };
 
   return (
     <header className="relative z-50 w-full bg-[#F5F1E8]">
@@ -30,12 +43,13 @@ export default function Header() {
               Головна
             </Link>
 
-            <Link
-              href="#about"
+            <button
+              type="button"
+              onClick={() => scrollToSection("about")}
               className="text-xl font-medium text-[#29231F] transition-colors hover:text-[#C0A264]"
             >
               Про нас
-            </Link>
+            </button>
 
             {/* SERVICES */}
             <div
@@ -79,19 +93,20 @@ export default function Header() {
               </div>
             </div>
 
-            <Link
-              href="#contacts"
+            <button
+              type="button"
+              onClick={() => scrollToSection("contacts")}
               className="flex items-center gap-1 text-xl font-medium text-[#29231F] transition-colors hover:text-[#C0A264]"
             >
               Адреса
-            </Link>
-
-            <Link
-              href="#contacts"
+            </button>
+            <button
+              type="button"
+              onClick={() => scrollToSection("contacts")}
               className="text-xl font-medium text-[#29231F] transition-colors hover:text-[#C0A264]"
             >
               Контакти
-            </Link>
+            </button>
           </div>
         </nav>
 
@@ -164,13 +179,16 @@ export default function Header() {
             Головна
           </Link>
 
-          <Link
-            href="#about"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block border-b border-[#4A3528]/10 py-4 text-base font-medium text-[#29231F]"
+          <button
+            type="button"
+            onClick={() => {
+              setMobileMenuOpen(false);
+              scrollToSection("about");
+            }}
+            className="block w-full border-b border-[#4A3528]/10 py-4 text-left text-base font-medium text-[#29231F]"
           >
             Про нас
-          </Link>
+          </button>
 
           {/* MOBILE SERVICES */}
           <button
@@ -207,22 +225,28 @@ export default function Header() {
             </div>
           </div>
 
-          <Link
-            href="#contacts"
-            onClick={() => setMobileMenuOpen(false)}
-            className="flex items-center gap-2 border-b border-[#4A3528]/10 py-4 text-base font-medium text-[#29231F]"
+          <button
+            type="button"
+            onClick={() => {
+              setMobileMenuOpen(false);
+              scrollToSection("contacts");
+            }}
+            className="flex w-full items-center gap-2 border-b border-[#4A3528]/10 py-4 text-left text-base font-medium text-[#29231F]"
           >
             <MapPin size={17} />
             Адреса
-          </Link>
+          </button>
 
-          <Link
-            href="#contacts"
-            onClick={() => setMobileMenuOpen(false)}
-            className="block border-b border-[#4A3528]/10 py-4 text-base font-medium text-[#29231F]"
+          <button
+            type="button"
+            onClick={() => {
+              setMobileMenuOpen(false);
+              scrollToSection("contacts");
+            }}
+            className="block w-full border-b border-[#4A3528]/10 py-4 text-left text-base font-medium text-[#29231F]"
           >
             Контакти
-          </Link>
+          </button>
 
           {/* MOBILE SOCIALS */}
           <div className="mt-6 flex gap-3">
