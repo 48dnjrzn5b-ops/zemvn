@@ -68,16 +68,22 @@ export default function Contact() {
                     Вінниця
                   </h3>
 
-                  <p
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=Київська%204%2C%20Вінниця%2C%20Україна"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="
                       mt-1
+                      block
                       text-lg
                       text-[#6A6058]
+                      transition-colors
+                      hover:text-[#8A6F3F]
                       sm:text-xl
                     "
                   >
                     вул. Київська, 4
-                  </p>
+                  </a>
                 </div>
               </div>
 
@@ -146,16 +152,22 @@ export default function Contact() {
                     м. Ямпіль
                   </h3>
 
-                  <p
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=вул.%20Б.%20Хмельницького%2C%2059%2C%20Ямпіль%2C%20Україна"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="
                       mt-1
+                      block
                       text-lg
                       text-[#6A6058]
+                      transition-colors
+                      hover:text-[#8A6F3F]
                       sm:text-xl
                     "
                   >
-                    вул. Б.Хмельницького, 59
-                  </p>
+                    вул. Б. Хмельницького, 59
+                  </a>
                 </div>
               </div>
 
@@ -168,11 +180,11 @@ export default function Contact() {
                     sm:text-xl
                   "
                 >
-                  Майбородюк Михайло Михайлович
+                  Майбородюк Василь Миколайович
                 </p>
 
                 <a
-                  href="tel:+380000000001"
+                  href="tel:+380679549436"
                   className="
                     mt-2
                     flex
@@ -187,7 +199,7 @@ export default function Contact() {
                   "
                 >
                   <Phone size={19} />
-                  +380 XX XXX XX XX
+                  +380 67 954 94 36
                 </a>
               </div>
             </div>

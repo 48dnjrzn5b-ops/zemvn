@@ -1,30 +1,16 @@
+"use client";
+
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
-
-const services = [
-  {
-    title: "Геодезичні роботи",
-    href: "/services/geodesy",
-  },
-  {
-    title: "Землевпорядні роботи",
-    href: "/services/land-management",
-  },
-  {
-    title: "Кадастрові роботи",
-    href: "/services/cadastral",
-  },
-  {
-    title: "Топографічна зйомка",
-    href: "/services/topographic",
-  },
-  {
-    title: "Винос меж земельної ділянки",
-    href: "/services/boundaries",
-  },
-];
+import { useState } from "react";
+import { services } from "@/data/services";
 
 export default function Footer() {
+  const [emailVisible, setEmailVisible] = useState(false);
+
+  const email = "simon8497@gmail.com";
+  const hiddenEmail = `${email.slice(0, Math.floor(email.length / 2))}...`;
+
   return (
     <footer className="bg-[#4A3528] text-[#F5F1E8]">
       <div
@@ -96,48 +82,28 @@ export default function Footer() {
             <nav className="mt-5 flex flex-col gap-3">
               <Link
                 href="/"
-                className="
-                  text-sm
-                  text-[#F5F1E8]/65
-                  transition-colors
-                  hover:text-[#D6B36A]
-                "
+                className="text-sm text-[#F5F1E8]/65 transition-colors hover:text-[#D6B36A]"
               >
                 Головна
               </Link>
 
               <Link
-                href="/about"
-                className="
-                  text-sm
-                  text-[#F5F1E8]/65
-                  transition-colors
-                  hover:text-[#D6B36A]
-                "
+                href="#about"
+                className="text-sm text-[#F5F1E8]/65 transition-colors hover:text-[#D6B36A]"
               >
                 Про нас
               </Link>
 
               <Link
-                href="/services"
-                className="
-                  text-sm
-                  text-[#F5F1E8]/65
-                  transition-colors
-                  hover:text-[#D6B36A]
-                "
+                href="#services"
+                className="text-sm text-[#F5F1E8]/65 transition-colors hover:text-[#D6B36A]"
               >
                 Послуги
               </Link>
 
               <Link
-                href="/contacts"
-                className="
-                  text-sm
-                  text-[#F5F1E8]/65
-                  transition-colors
-                  hover:text-[#D6B36A]
-                "
+                href="#contacts"
+                className="text-sm text-[#F5F1E8]/65 transition-colors hover:text-[#D6B36A]"
               >
                 Контакти
               </Link>
@@ -159,10 +125,10 @@ export default function Footer() {
             </h3>
 
             <nav className="mt-5 flex flex-col gap-3">
-              {services.map((service) => (
+              {services.slice(0, 5).map((service) => (
                 <Link
-                  key={service.href}
-                  href={service.href}
+                  key={service.slug}
+                  href={`/services/${service.slug}`}
                   className="
                     text-sm
                     leading-5
@@ -193,18 +159,27 @@ export default function Footer() {
 
             <div className="mt-5 space-y-4">
               {/* Address */}
-              <div className="flex gap-3">
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=Київська%204%2C%20Вінниця%2C%20Україна"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+    flex
+    gap-3
+    text-sm
+    leading-5
+    text-[#F5F1E8]/65
+    transition-colors
+    hover:text-[#D6B36A]
+  "
+              >
                 <MapPin size={18} className="mt-0.5 shrink-0 text-[#D6B36A]" />
 
-                <div className="text-sm leading-5 text-[#F5F1E8]/65">
-                  <p>Київська, 4</p>
-                  <p>м. Вінниця</p>
-                </div>
-              </div>
-
+                <span>Київська, 4, м. Вінниця</span>
+              </a>
               {/* Phone */}
               <a
-                href="tel:+380000000000"
+                href="tel:+380982746415"
                 className="
                   flex
                   items-center
@@ -216,25 +191,40 @@ export default function Footer() {
                 "
               >
                 <Phone size={18} className="shrink-0 text-[#D6B36A]" />
-                +380 XX XXX XX XX
+                +380 98 274 64 15
               </a>
-
               {/* Email */}
-              <a
-                href="mailto:example@gmail.com"
-                className="
-                  flex
-                  items-center
-                  gap-3
-                  text-sm
-                  text-[#F5F1E8]/65
-                  transition-colors
-                  hover:text-[#D6B36A]
-                "
-              >
+              <div className="flex items-center gap-3">
                 <Mail size={18} className="shrink-0 text-[#D6B36A]" />
-                example@gmail.com
-              </a>
+
+                {!emailVisible ? (
+                  <button
+                    type="button"
+                    onClick={() => setEmailVisible(true)}
+                    className="
+                      cursor-pointer
+                      text-sm
+                      text-[#F5F1E8]/65
+                      transition-colors
+                      hover:text-[#D6B36A]
+                    "
+                  >
+                    {hiddenEmail}
+                  </button>
+                ) : (
+                  <a
+                    href={`mailto:${email}`}
+                    className="
+                      text-sm
+                      text-[#F5F1E8]/65
+                      transition-colors
+                      hover:text-[#D6B36A]
+                    "
+                  >
+                    {email}
+                  </a>
+                )}
+              </div>
             </div>
           </div>
         </div>
